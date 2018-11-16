@@ -2,6 +2,7 @@ const path = require('path')
 const UglifyPlugin = require('uglifyjs-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const webpack = require('webpack')
+const entry = process.env.npm_lifecycle_event === 'start' ? ['webpack-hot-middleware/client.js?reload=true', './src/index.js'] : './src/index.js'
 
 function resolve(dir) {
     return path.resolve(__dirname, '..', dir)
@@ -9,7 +10,7 @@ function resolve(dir) {
 
 module.exports = {
     entry: {
-        main: ['webpack-hot-middleware/client.js?reload=true', './src/index.js']
+        main: entry
     },
     output: {
         path: path.resolve(__dirname, 'dist'),
